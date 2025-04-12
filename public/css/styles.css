@@ -2507,7 +2507,7 @@ textarea.form-control-lg {
 }
 .form-check-input:checked {
   background-color: #1abc9c;
-  border-color: #1abc9c;
+  border-color: #dbe8e5;
 }
 .form-check-input:checked[type=checkbox] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
@@ -11628,6 +11628,58 @@ html {
 .transition-hover:hover span {
   color: white !important;
 }
+
+
+
+.navbar-nav .dropdown-toggle, .dropdown-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .dropdown-toggle img, .dropdown-item img {
+    vertical-align: middle;
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-item {
+    padding: 10px 20px; /* Ajusta según tu preferencia */
+    display: flex;
+    align-items: center;
+}
+
+
+/* Estilo para dropdown del idioma */
+.dropdown-menu.custom-dropdown {
+  background-color: #191e29; /* Mismo fondo que navbar oscura */
+  border: none;
+  padding: 0.5rem 0;
+}
+
+.dropdown-menu.custom-dropdown .dropdown-item {
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu.custom-dropdown .dropdown-item:hover {
+  background-color: #696e79;
+  color: white;
+}
+
+.form-switch.form-switch-xl .form-check-input {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.form-switch.form-switch-xl .form-check-input:checked {
+  background-color: #696e79; /* Azul Bootstrap */
+}
+
+
+
 
 
 

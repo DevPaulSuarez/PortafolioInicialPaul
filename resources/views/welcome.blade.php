@@ -68,7 +68,7 @@
 @endsection
 
 @section('experiencias')
-    <h2 class="text-center mb-4">Experiencia Laboral</h2>
+    <h2 class="text-center mb-4">{{ __('messages.experiencia_laboral') }}</h2>
     
     <div class="timeline">
         @foreach ($experiencias as $experiencia)
@@ -83,7 +83,7 @@
     </div>
 
     <div class="text-center mt-3">
-        <p id="description-text" class="timeline-description">Haz clic en un año para ver más información.</p>
+        <p id="description-text" class="timeline-description">{{ __('messages.click_year_for_info') }}</p>
     </div>
 
 

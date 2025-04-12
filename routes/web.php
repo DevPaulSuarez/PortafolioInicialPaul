@@ -28,4 +28,12 @@ Route::resource('/tecnologia', TecnologiaController::class);
 
 Route::resource('/experiencia', ExperienciaLaboralController::class);
 
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'es'])) {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 
