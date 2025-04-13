@@ -6,9 +6,19 @@
             {!! $errors->first('empresa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('empresa_en') }}
+            {{ Form::text('empresa_en', $experiencia->empresa_en, ['class' => 'form-control' . ($errors->has('empresa_en') ? ' is-invalid' : ''), 'placeholder' => 'empresa_en']) }}
+            {!! $errors->first('empresa_en', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('cargo') }}
             {{ Form::text('cargo', $experiencia->cargo, ['class' => 'form-control' . ($errors->has('cargo') ? ' is-invalid' : ''), 'placeholder' => 'cargo']) }}
             {!! $errors->first('cargo', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('cargo_en') }}
+            {{ Form::text('cargo_en', $experiencia->cargo_en, ['class' => 'form-control' . ($errors->has('cargo_en') ? ' is-invalid' : ''), 'placeholder' => 'cargo_en']) }}
+            {!! $errors->first('cargo_en', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('fecha_inicio', 'Fecha de inicio') }}
@@ -41,9 +51,9 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('descripcion') }}
-            {{ Form::text('descripcion', $experiencia->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'descripcion']) }}
-            {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('descripcion_en') }}
+            {{ Form::text('descripcion_en', $experiencia->descripcion_en, ['class' => 'form-control' . ($errors->has('descripcion_en') ? ' is-invalid' : ''), 'placeholder' => 'descripcion_en']) }}
+            {!! $errors->first('descripcion_en', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('tecnologias', 'Tecnologías') }}

@@ -38,7 +38,11 @@ return [
     'proyectos_con_cms' => 'Projects with CMS',
     'direccion' => 'AV. Siempre viva 245, Third floor',
     'cms_description' => 'Raised Virtual Store Projects with <a href="https://pe.wordpress.org/" target="_blank">Wordpress</a> and Point of Sale Systems with <a href="https://www.odoo.com/es_ES" target="_blank">Oddo</a>.',
-   
+    'codigo' => 'Code',
+    'ver_demo' => 'View Demo',
+    'EMPRESA' => 'COMPANY',
+    'CARGO' => 'POSITION',
+    'DESCRIPCION' => 'DESCRIPTION',
 
     
 ];

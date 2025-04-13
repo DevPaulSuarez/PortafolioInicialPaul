@@ -39,7 +39,7 @@
                                         <th>No</th>
                                         <th>Categoria</th>
 										<th>Nombre</th>
-										<th>Icono</th>
+										<th>Imagen</th>
 										<th>Descripcion</th>
                                         <th></th>
                                     </tr>
@@ -50,7 +50,7 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $tecnologias->categorias }}</td>
 											<td>{{ $tecnologias->nombre }}</td>
-											<td><i class="{{ $tecnologias->icono }}"></i></td>
+											<td>{{ $tecnologias->icono }}</td>
 											<td>{{ $tecnologias->descripcion }}</td>
                                             <td>
                                                 <form action="{{ route('tecnologia.destroy',$tecnologias->id) }}" method="POST">

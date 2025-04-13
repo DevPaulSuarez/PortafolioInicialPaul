@@ -7,6 +7,11 @@
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('nombre_en') }}
+            {{ Form::text('nombre_en', $proyecto->nombre_en, ['class' => 'form-control' . ($errors->has('nombre_en') ? ' is-invalid' : ''), 'placeholder' => 'nombre_en']) }}
+            {!! $errors->first('nombre_en', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('imagen') }}
             {{ Form::text('imagen', $proyecto->imagen, ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
             {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
@@ -15,6 +20,11 @@
             {{ Form::label('descripcion') }}
             {{ Form::text('descripcion', $proyecto->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('descripcion_en') }}
+            {{ Form::text('descripcion_en', $proyecto->descripcion_en, ['class' => 'form-control' . ($errors->has('descripcion_en') ? ' is-invalid' : ''), 'placeholder' => 'descripcion_en']) }}
+            {!! $errors->first('descripcion_en', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('url') }}

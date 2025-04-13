@@ -11,11 +11,15 @@ class PortafolioController extends Controller
 {
     public function index()
     {
+         // Recupera el idioma desde la sesión
+         $idioma = session('locale', 'es');
+
         $proyectos = Proyecto::paginate();
         $tecnologias = Tecnologia::all();
-        $experiencias = ExperienciaLaboral::all();
+       // $experiencias = ExperienciaLaboral::all();
+        $experiencias = ExperienciaLaboral::orderBy('fecha_inicio', 'asc')->get();
         $tecnologiasPorCategoria = $tecnologias->groupBy('categorias');
 
-        return view('welcome', compact('proyectos','tecnologias','tecnologiasPorCategoria','experiencias'));
+        return view('welcome', compact('idioma','proyectos','tecnologias','tecnologiasPorCategoria','experiencias'));
     }
 }

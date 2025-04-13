@@ -25,7 +25,9 @@ class Proyecto extends Model
 		'nombre' => 'required',
 		'imagen' => 'required',
 		'descripcion' => 'required',
-		'url' => 'required'
+		'url' => 'required',
+        'nombre_en',
+        'descripcion_en',
     ];
 
     protected $perPage = 20;
@@ -35,7 +37,7 @@ class Proyecto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url'];
+    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url','nombre_en','descripcion_en'];
 
     public function user()
     {

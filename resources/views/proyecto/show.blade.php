@@ -25,12 +25,20 @@
                             {{ $proyecto->nombre }}
                         </div>
                         <div class="form-group">
+                            <strong>nombre_en:</strong>
+                            {{ $proyecto->nombre_en }}
+                        </div>
+                        <div class="form-group">
                             <strong>Imagen:</strong>
                             {{ $proyecto->imagen }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
                             {{ $proyecto->descripcion }}
+                        </div>
+                        <div class="form-group">
+                            <strong>descripcion_en:</strong>
+                            {{ $proyecto->descripcion_en }}
                         </div>
                         <div class="form-group">
                             <strong>Url:</strong>

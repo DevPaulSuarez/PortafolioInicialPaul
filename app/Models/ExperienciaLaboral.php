@@ -13,7 +13,7 @@ class ExperienciaLaboral extends Model
 
     protected $table = 'experiencia_laboral'; // Asegúrate de que el nombre de la tabla sea correcto
     protected $perPage = 20;
-    protected $fillable = ['empresa', 'cargo', 'fecha_inicio', 'fecha_fin', 'proyecto_id', 'descripcion'];
+    protected $fillable = ['empresa', 'cargo', 'fecha_inicio', 'fecha_fin', 'proyecto_id', 'descripcion','empresa_en', 'cargo_en','descripcion_en'];
 
 
     public static $rules = [
@@ -24,6 +24,9 @@ class ExperienciaLaboral extends Model
         'proyecto_id' => 'required|exists:proyectos,id', // Asegurarse de que el proyecto exista
         'descripcion' => 'required',
         'tecnologias' => 'array', // Asegurar que sea un array
+        'empresa_en' => 'nullable|string',
+        'cargo_en' => 'nullable|string',
+        'descripcion_en' => 'nullable|string',
     ];
 
     // Relación con Proyecto (pertenece a un proyecto)

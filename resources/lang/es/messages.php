@@ -38,7 +38,11 @@ return [
      'proyectos_con_cms' => 'Proyectos con CMS',
      'direccion' => 'AV. Siempre viva 245, Tercer piso',
      'cms_description' => 'Levante Proyectos de Tiendas Virtuales con <a href="https://pe.wordpress.org/" target="_blank">Wordpress</a> y Sistemas de puntos de venta con <a href="https://www.odoo.com/es_ES" target="_blank">Oddo</a>.',
-
+     'codigo' => 'Código',
+     'ver_demo' => 'Ver Demo',
+     'EMPRESA' => 'EMPRESA',
+    'CARGO' => 'CARGO',
+    'DESCRIPCION' => 'DESCRIPCIÓN',
 
 
 

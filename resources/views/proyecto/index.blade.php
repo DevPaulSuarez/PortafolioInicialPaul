@@ -37,8 +37,10 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+                                        <th>Nombre_en</th>
 										<th>Imagen</th>
 										<th>Descripcion</th>
+                                        <th>Descripcion_en</th>
 										<th>Url</th>
 
                                         <th></th>
@@ -50,8 +52,10 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $proyecto->nombre }}</td>
+                                            <td>{{ $proyecto->nombre_en }}</td>
 											<td>{{ $proyecto->imagen }}</td>
 											<td>{{ $proyecto->descripcion }}</td>
+                                            <td>{{ $proyecto->descripcion_en }}</td>
 											<td>{{ $proyecto->url }}</td>
 
                                             <td>
