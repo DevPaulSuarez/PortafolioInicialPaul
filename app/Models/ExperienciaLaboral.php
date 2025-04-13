@@ -36,4 +36,6 @@ class ExperienciaLaboral extends Model
     {
         return $this->belongsToMany(Tecnologia::class, 'experiencia_tecnologia', 'experiencia_id', 'tecnologia_id')->withTimestamps();
     }
+
+   
 }

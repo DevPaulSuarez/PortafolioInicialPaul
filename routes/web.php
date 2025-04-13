@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TecnologiaController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ExperienciaLaboralController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\PortafolioController;
+use App\Http\Controllers\HomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +22,13 @@ use App\Http\Controllers\ExperienciaLaboralController;
 |
 */
 
-Route::get('/',   [App\Http\Controllers\PortafolioController::class, 'index']);
+Route::get('/',   [PortafolioController::class, 'index']);
 
 Auth::routes();
 
 Route::resource('/proyectos', ProyectoController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('/tecnologia', TecnologiaController::class);
 

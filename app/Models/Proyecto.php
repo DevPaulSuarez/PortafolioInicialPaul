@@ -54,4 +54,5 @@ class Proyecto extends Model
         return $this->hasMany(ExperienciaLaboral::class);
     }
 
+
 }
