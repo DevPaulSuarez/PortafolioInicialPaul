@@ -9,13 +9,14 @@ class DetectLocale
 {
     public function handle($request, Closure $next)
     {
-        if (!session()->has('locale')) {
-            $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
-            $locale = in_array($locale, ['en', 'es']) ? $locale : config('app.locale');
-            session(['locale' => $locale]);
+        // Si el usuario ya cambió idioma antes, usar ese
+        if (session()->has('locale')) {
+            App::setLocale(session('locale'));
+        } else {
+            // Por defecto: inglés (ya no se detecta desde navegador)
+            App::setLocale('en');
+            session(['locale' => 'en']);
         }
-
-        App::setLocale(session('locale'));
 
         return $next($request);
     }
