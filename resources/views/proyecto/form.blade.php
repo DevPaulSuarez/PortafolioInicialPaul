@@ -27,15 +27,21 @@
             {!! $errors->first('descripcion_en', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('url') }}
-            {{ Form::text('url', $proyecto->url, ['class' => 'form-control' . ($errors->has('url') ? ' is-invalid' : ''), 'placeholder' => 'Url']) }}
-            {!! $errors->first('url', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('url_live_demo') }}
+            {{ Form::text('url_live_demo', $proyecto->url_live_demo, ['class' => 'form-control' . ($errors->has('url_live_demo') ? ' is-invalid' : ''), 'placeholder' => 'url_live_demo']) }}
+            {!! $errors->first('url_live_demo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Demo') }}
-            {{ Form::text('demo_url', $proyecto->demo_url, ['class' => 'form-control' . ($errors->has('demo_url') ? ' is-invalid' : ''), 'placeholder' => 'Demo']) }}
-            {!! $errors->first('demo_url', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('url_github') }}
+            {{ Form::text('url_github', $proyecto->url_github, ['class' => 'form-control' . ($errors->has('url_github') ? ' is-invalid' : ''), 'placeholder' => 'url_github']) }}
+            {!! $errors->first('url_github', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('url_video_proyecto') }}
+            {{ Form::text('url_video_proyecto', $proyecto->url_video_proyecto, ['class' => 'form-control' . ($errors->has('url_video_proyecto') ? ' is-invalid' : ''), 'placeholder' => 'url_video_proyecto']) }}
+            {!! $errors->first('url_video_proyecto', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
 
     </div>
     <div class="box-footer" style="margin-top: 10px;">

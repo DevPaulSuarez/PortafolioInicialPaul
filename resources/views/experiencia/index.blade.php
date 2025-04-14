@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 @extends('layouts.app')
 
 @section('template_title')
@@ -36,12 +37,9 @@
                                     <tr>
                                         <th>No</th>
 										<th>Empresa</th>
-                                        <th>Empresa_en</th>
 										<th>Cargo</th>
-                                        <th>Cargo_en</th>
                                         <th>Proyecto</th>
 										<th>Descripcion</th>
-                                        <th>Descripcion_en</th>
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Fin</th>
                                         <th></th>
@@ -54,14 +52,11 @@
                                             <td>{{ $index + 1 }}</td>
                                             
                                             <!-- Mostrar los atributos de la experiencia -->
-                                            <td>{{ $experiencias->empresa }}</td>
-                                            <td>{{ $experiencias->empresa_en }}</td>
-                                            <td>{{ $experiencias->cargo }}</td>
-                                            <td>{{ $experiencias->cargo_en }}</td>
+                                            <td> {{ app()->getLocale() == 'en'? Str::limit($experiencias->empresa_en, 20) : Str::limit($experiencias->empresa, 20)}}</td>
+                                            <td> {{ app()->getLocale() == 'en'? Str::limit($experiencias->cargo_en, 30) : Str::limit($experiencias->cargo, 30)}}</td>
                                              <!-- Mostrar el nombre del proyecto (usando la relación) -->
-                                            <td>{{ $experiencias->proyecto ? $experiencias->proyecto->nombre : 'No asignado' }}</td>
-                                            <td>{{ $experiencias->descripcion }}</td>
-                                            <td>{{ $experiencias->descripcion_en }}</td>
+                                            <td>{{ Str::limit($experiencias->proyecto ? $experiencias->proyecto->nombre : 'No asignado', 30) }}</td>
+                                            <td> {{ app()->getLocale() == 'en'? Str::limit($experiencias->descripcion_en, 30) : Str::limit($experiencias->descripcion, 30)}}</td>
                                             <td>{{ $experiencias->fecha_inicio }}</td>
                                             <td>{{ $experiencias->fecha_fin ?? 'Actualmente' }}</td> <!-- Si no tiene fecha de fin, muestra 'Actualmente' -->
                                             

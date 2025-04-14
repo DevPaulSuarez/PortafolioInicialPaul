@@ -26,8 +26,11 @@ class ProyectoController extends Controller
     public function index()
     {
         $userId = auth()->id();
-        $proyectos = Proyecto::where('user_id', $userId)->paginate();
 
+        $proyectos = Proyecto::where('user_id', $userId)
+            ->with(['experienciaLaboral.tecnologias']) // Esto carga las tecnologías asociadas a experiencias
+            ->paginate();
+    
         return view('proyecto.index', compact('proyectos'))
             ->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
 

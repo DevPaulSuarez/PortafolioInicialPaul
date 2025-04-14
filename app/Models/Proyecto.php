@@ -25,7 +25,7 @@ class Proyecto extends Model
 		'nombre' => 'required',
 		'imagen' => 'required',
 		'descripcion' => 'required',
-		'url' => 'required',
+		'url',
         'nombre_en',
         'descripcion_en',
     ];
@@ -37,7 +37,7 @@ class Proyecto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url','nombre_en','descripcion_en'];
+    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url','nombre_en','descripcion_en','url_live_demo','url_github', 'url_video_proyecto'];
 
     public function user()
     {
@@ -55,6 +55,7 @@ class Proyecto extends Model
     {
         return $this->hasMany(ExperienciaLaboral::class);
     }
+
 
 
 }

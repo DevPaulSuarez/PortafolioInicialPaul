@@ -39,10 +39,7 @@ Proyecto
                                     <th>No</th>
 
                                     <th>Nombre</th>
-                                    <th>Imagen</th>
                                     <th>Descripcion</th>
-                                    <th>Url</th>
-
                                     <th></th>
                                 </tr>
                             </thead>
@@ -50,12 +47,9 @@ Proyecto
                                 @foreach ($proyectos as $proyecto)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td> {{ app()->getLocale() == 'en'? Str::limit($proyecto->nombre, 40) : Str::limit($proyecto->nombre_en, 40)}}</td>
-                                    <td>{{ Str::limit($proyecto->imagen, 10)  }}</td>
+                                    <td> {{ app()->getLocale() == 'en'? Str::limit($proyecto->nombre_en, 40) : Str::limit($proyecto->nombre, 40)}}</td>
                                     <td>{{ app()->getLocale() == 'en'? Str::limit($proyecto->descripcion_en, 40): Str::limit($proyecto->descripcion, 40) }}</td>
-                                    <td>{{ Str::limit($proyecto->url, 10)  }} </td>
-
-                                    <td>
+                                                                        <td>
                                         <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">
                                             <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
                                             <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>

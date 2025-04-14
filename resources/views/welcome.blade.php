@@ -8,18 +8,28 @@
     <div class="col-md-6 col-lg-4 mb-4">
         <div class="card h-100 shadow">
             <img src="{{ $proyecto->imagen }}" class="card-img-top img-fixed" alt="{{ $proyecto->nombre }}">
-            <div class="img2"><img src="{{ $proyecto->imagen }}" alt="" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $proyecto->id }}"></div>
+            <div class="img2"><img src="{{ $proyecto->imagen }}" alt="" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $proyecto->id }}"></div>
             <div class="card-body text-center">
                 <h5 class="card-title">
                     {{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}
                 </h5>
-                <p class="card-text text-truncate" style="max-width: 90%; margin: auto;">
-                    {{ $idioma === 'en' ? $proyecto->descripcion_en : $proyecto->descripcion }}
-                </p>
-                <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $proyecto->id }}">
-                    {{ __('messages.codigo') }}
-                </button>
-                <a class="btn btn-primary mt-2" href="{{ $proyecto->url }}" target="_blank">
+                <ul class="list-unstyled">
+        @php
+            $tecnologias = $proyecto->experienciaLaboral->flatMap(function($exp) {
+                return $exp->tecnologias;
+            })->unique('id');
+        @endphp
+
+        @forelse ($tecnologias as $tecnologia)
+            <img class="rounded mb-2"
+                src="{{ $tecnologia->icono }}"
+                alt="Ícono de {{ $tecnologia->nombre }}"
+                style="width: 50px; height: 50px; object-fit: contain;">
+        @empty
+            <li>No hay tecnologías asociadas</li>
+        @endforelse
+    </ul>
+                <a class="btn btn-primary mt-2" href="{{ $proyecto->url_live_demo }}" target="_blank">
                     {{ __('messages.ver_demo') }}
                 </a>
             </div>
@@ -35,8 +45,20 @@
                 </div>
                 <div class="modal-body text-center pb-4">
                     <h2 class="text-secondary text-uppercase">{{ $proyecto->nombre }}</h2>
-                    <img class="img-fluid rounded mb-3 modal-img-fixed" src="{{ $proyecto->imagen }}" alt="{{ $proyecto->nombre }}">
+                    <iframe
+                        class="img-fluid rounded mb-3 modal-img-fixed"
+                        width="560" 
+                        height="315" 
+                        src="{{ $proyecto->url_video_proyecto }}"
+                        title="{{ $proyecto->nombre }}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                     <p>{{ $proyecto->descripcion }}</p>
+                    <a class="btn btn-primary mt-2" href="{{ $proyecto->url_github }}" target="_blank">
+                    {{ __('messages.codigo') }}
+                </a>
                     <button class="btn btn-primary mt-2" data-bs-dismiss="modal">
                         Atras
                     </button>
@@ -50,28 +72,28 @@
 @endsection
 
 @section('tecnologias')
-    @foreach ($tecnologiasPorCategoria as $categoria => $tecnologias)
-        <div class="mb-4">
-            <h3 class="text-secondary mb-3">
-            {{ __('categorias.' . $categoria) }}:
-            </h3>
+@foreach ($tecnologiasPorCategoria as $categoria => $tecnologias)
+<div class="mb-4">
+    <h3 class="text-secondary mb-3">
+        {{ __('categorias.' . $categoria) }}:
+    </h3>
 
-            <ul class="list-unstyled d-flex flex-wrap gap-3 m-0">
-                @foreach ($tecnologias as $tecnologia)
-                <li class="d-flex flex-column align-items-center justify-content-center rounded p-3 shadow-sm transition-hover"
-                    style="cursor: pointer; width: 135px; margin-top: 10px;">
-                    <img class="rounded mb-2"
-                        src="{{ $tecnologia->icono }}"
-                        alt="Ícono de {{ $tecnologia->nombre }}"
-                        style="width: 80px; height: 80px; object-fit: contain;">
+    <ul class="list-unstyled d-flex flex-wrap gap-3 m-0">
+        @foreach ($tecnologias as $tecnologia)
+        <li class="d-flex flex-column align-items-center justify-content-center rounded p-3 shadow-sm transition-hover"
+            style="cursor: pointer; width: 135px; margin-top: 10px;">
+            <img class="rounded mb-2"
+                src="{{ $tecnologia->icono }}"
+                alt="Ícono de {{ $tecnologia->nombre }}"
+                style="width: 80px; height: 80px; object-fit: contain;">
 
-                    <h6>{{ $tecnologia->nombre }}</h6>
-                    <!-- <span class="text-muted small">{{ $tecnologia->descripcion }}</span> -->
-                </li>
-                @endforeach
-            </ul>
-        </div>
-    @endforeach
+            <h6>{{ $tecnologia->nombre }}</h6>
+            <!-- <span class="text-muted small">{{ $tecnologia->descripcion }}</span> -->
+        </li>
+        @endforeach
+    </ul>
+</div>
+@endforeach
 
 @endsection
 
