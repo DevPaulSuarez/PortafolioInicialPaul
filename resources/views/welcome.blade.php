@@ -50,31 +50,28 @@
 @endsection
 
 @section('tecnologias')
-@foreach ($tecnologiasPorCategoria as $categoria => $tecnologias)
-<div class="mb-4">
-    <h3 class="text-secondary mb-3">
-        {{ ucfirst($categoria) }}:
-    </h3>
+    @foreach ($tecnologiasPorCategoria as $categoria => $tecnologias)
+        <div class="mb-4">
+            <h3 class="text-secondary mb-3">
+            {{ __('categorias.' . $categoria) }}:
+            </h3>
 
-    <ul class="list-unstyled d-flex flex-wrap gap-3 m-0">
-        @foreach ($tecnologias as $tecnologia)
-        <li class="d-flex flex-column align-items-center justify-content-center rounded p-3 shadow-sm transition-hover"
-            style="cursor: pointer; width: 135px; margin-top: 10px;">
-            <img class="rounded mb-2"
-                src="{{ $tecnologia->icono }}"
-                alt="Ícono de {{ $tecnologia->nombre }}"
-                style="width: 80px; height: 80px; object-fit: contain;">
+            <ul class="list-unstyled d-flex flex-wrap gap-3 m-0">
+                @foreach ($tecnologias as $tecnologia)
+                <li class="d-flex flex-column align-items-center justify-content-center rounded p-3 shadow-sm transition-hover"
+                    style="cursor: pointer; width: 135px; margin-top: 10px;">
+                    <img class="rounded mb-2"
+                        src="{{ $tecnologia->icono }}"
+                        alt="Ícono de {{ $tecnologia->nombre }}"
+                        style="width: 80px; height: 80px; object-fit: contain;">
 
-            <h6>{{ $tecnologia->nombre }}</h6>
-            <!-- <span class="text-muted small">{{ $tecnologia->descripcion }}</span> -->
-        </li>
-        @endforeach
-    </ul>
-</div>
-
-
-
-@endforeach
+                    <h6>{{ $tecnologia->nombre }}</h6>
+                    <!-- <span class="text-muted small">{{ $tecnologia->descripcion }}</span> -->
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    @endforeach
 
 @endsection
 

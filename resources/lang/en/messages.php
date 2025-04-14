@@ -7,17 +7,16 @@ return [
     'english' => 'English',
     'spanish' => 'Spanish',
     /** Bar Nav */
-    'projects' => 'Projects',
-    'skills' => 'Skills',
-    'about' => 'About Me',
-    'contact' => 'Contact Me',
-    'experience' => 'Experience',
+    'projects' => 'PROJECTS',
+    'skills' => 'SKILLS',
+    'about' => 'ABOUT ME',
+    'contact' => 'CONTACT',
+    'experience' => 'EXPERIENCE',
     /** seccion informacion */
     'presentacion_titulo' => 'Hi! I\'m Paul Suarez,',
     'presentacion_descripcion' => 'a fullstack developer passionate about technology and creating effective solutions.',
     'lema' => '"Clean code, effective solutions. Always learning for your success." 🚀',
     'download' => 'DOWNLOAD',
-    'contact' => 'CONTACT',
     'linkedin' => 'LINKEDIN',
     /** seccion Proyectos */
     "seccion_proyecto_titulo"=> "PROJECTS",

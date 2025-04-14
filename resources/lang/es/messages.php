@@ -7,17 +7,16 @@ return [
     'english' => 'Inglés',
     'spanish' => 'Español',
     /** Barra de Navegacion */
-    'projects' => 'Proyectos',
-    'skills' => 'Habilidades',
-    'about' => 'Sobre mí',
-    'contact' => 'Contácteme',
-    'experience' => 'Experiencia',
+    'projects' => 'PROYECTOS',
+    'skills' => 'HABILIDADES',
+    'about' => 'SOBRE MI',
+    'contact' => 'CONTACTO',
+    'experience' => 'EXPERIENCIA',
     /** seccion informacion */
     'presentacion_titulo' => '¡Hola! Soy Paul Suarez,',
     'presentacion_descripcion' => 'un desarrollador fullstack apasionado por la tecnología y la creación de soluciones efectivas.',
     'lema' => '"Código limpio, soluciones efectivas. Siempre aprendiendo para tu éxito." 🚀',
     'download' => 'DESCARGAR',
-    'contact' => 'CONTACTO',
     'linkedin' => 'LINKEDIN',
     /** seccion Proyectos */
     "seccion_proyecto_titulo" => "PROYECTOS",
