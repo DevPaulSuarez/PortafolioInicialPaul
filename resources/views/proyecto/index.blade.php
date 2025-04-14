@@ -1,81 +1,78 @@
+@php use Illuminate\Support\Str; @endphp
+
 @extends('layouts.app')
 
 @section('template_title')
-    Proyecto
+Proyecto
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <span id="card_title">
-                                {{ __('Proyecto') }}
-                            </span>
+                        <span id="card_title">
+                            {{ __('Proyecto') }}
+                        </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-										<th>Nombre</th>
-                                        <th>Nombre_en</th>
-										<th>Imagen</th>
-										<th>Descripcion</th>
-                                        <th>Descripcion_en</th>
-										<th>Url</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($proyectos as $proyecto)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $proyecto->nombre }}</td>
-                                            <td>{{ $proyecto->nombre_en }}</td>
-											<td>{{ $proyecto->imagen }}</td>
-											<td>{{ $proyecto->descripcion }}</td>
-                                            <td>{{ $proyecto->descripcion_en }}</td>
-											<td>{{ $proyecto->url }}</td>
-
-                                            <td>
-                                                <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="float-right">
+                            <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+                                {{ __('Create New') }}
+                            </a>
                         </div>
                     </div>
                 </div>
-                {!! $proyectos->links() !!}
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead">
+                                <tr>
+                                    <th>No</th>
+
+                                    <th>Nombre</th>
+                                    <th>Imagen</th>
+                                    <th>Descripcion</th>
+                                    <th>Url</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($proyectos as $proyecto)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td> {{ app()->getLocale() == 'en'? Str::limit($proyecto->nombre, 40) : Str::limit($proyecto->nombre_en, 40)}}</td>
+                                    <td>{{ Str::limit($proyecto->imagen, 10)  }}</td>
+                                    <td>{{ app()->getLocale() == 'en'? Str::limit($proyecto->descripcion_en, 40): Str::limit($proyecto->descripcion, 40) }}</td>
+                                    <td>{{ Str::limit($proyecto->url, 10)  }} </td>
+
+                                    <td>
+                                        <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">
+                                            <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                            <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            {!! $proyectos->links() !!}
         </div>
     </div>
+</div>
 @endsection
