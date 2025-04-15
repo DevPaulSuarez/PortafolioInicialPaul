@@ -50,7 +50,8 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $tecnologias->categorias }}</td>
 											<td>{{ $tecnologias->nombre }}</td>
-											<td>{{ $tecnologias->icono }}</td>
+											<td>{{ Str::limit($tecnologias->icono, 20) }}</td>
+                                            
 											<td>{{ $tecnologias->descripcion }}</td>
                                             <td>
                                                 <form action="{{ route('tecnologia.destroy',$tecnologias->id) }}" method="POST">
