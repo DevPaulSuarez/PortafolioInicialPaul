@@ -74,17 +74,25 @@
                     </p>
                     <div class="row justify-content-center">
                         <div class="col-sm-4 mb-3 text-center">
-                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100" href="https://drive.google.com/file/d/1qecJEOP1jMpUJVG5lqQRkpMG3CQkGZw3/view?usp=sharing" target="_blank">
+                            @php
+                            $locale = app()->getLocale();
+                            $cvFile = $locale === 'en' ? 'DevPess_en.pdf' : 'DevPess_es.pdf';
+                            @endphp
+
+                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100"
+                                href="{{ asset('assets/cv/' . $cvFile) }}"
+                                target="_blank" download>
                                 {{ __('messages.download') }}
                             </a>
+
                         </div>
                         <div class="col-sm-4 mb-3 text-center">
-                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100" href="mailto:tuemail@example.com">
+                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100" href="https://web.whatsapp.com/send?phone=13856229878&text=Hi DevPess" target="_blank">
                                 {{ __('messages.contact') }}
                             </a>
                         </div>
                         <div class="col-sm-4 mb-3 text-center">
-                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100" href="https://www.linkedin.com/in/tuusuario" target="_blank">
+                            <a class="btn btn-xl btn-outline-light d-flex justify-content-center align-items-center w-100" href="https://www.linkedin.com/in/devpess" target="_blank">
                                 {{ __('messages.linkedin') }}
                             </a>
                         </div>
@@ -255,34 +263,93 @@
     <footer class="footer text-center">
         <div class="container">
             <div class="row">
-                <!-- Footer Location-->
+                <!-- Contacto -->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">{{ __('messages.ubicacion') }}</h4>
+                    <h4 class="text-uppercase mb-4">{{ __('messages.direccionElectronica') }}</h4>
                     <p class="lead mb-0">
-                    {{ __('messages.direccion') }}
+                        <a href="mailto:paulsuarez018@gmail.com" class="text-white">paulsuarez018@gmail.com</a><br>
+                        {{ __('messages.direccionTexto') }}
                     </p>
                 </div>
-                <!-- Footer Social Icons-->
+                <!-- Redes Sociales -->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">{{ __('messages.mis_redes_sociales') }}</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-figma"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/tuusuario" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/@tuusuario" target="_blank"><i class="fab fa-fw fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/devpess" target="_blank"><i class="fab fa-fw fa-linkedin"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.figma.com/@tuusuario" target="_blank"><i class="fab fa-fw fa-figma"></i></a>
                 </div>
                 <!-- Footer About Text-->
+                                <!-- Tecnologías más usadas -->
                 <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">{{ __('messages.proyectos_con_cms') }}</h4>
-                    <p class="lead mb-0">
-                    {!! __('messages.cms_description') !!}
-                    </p>
+                <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
+                @php
+    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
+    $topNormales = [];
+    $topCompletas = [];
+@endphp
+
+{{-- Clasificamos tecnologías: completas vs. incompletas --}}
+@foreach ($topTecnologias as $tec)
+    @php
+        $cuadrosLlenos = min(10, $tec['conteo']);
+        if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
+            $topCompletas[] = $tec;
+        } else {
+            $topNormales[] = $tec;
+        }
+    @endphp
+@endforeach
+
+{{-- Barras de tecnologías incompletas --}}
+@foreach ($topNormales as $tec)
+    @php
+        $cuadrosLlenos = min(10, $tec['conteo']);
+        $color = 'red';
+
+        if ($cuadrosLlenos >= 7) $color = 'green';
+        elseif ($cuadrosLlenos >= 4) $color = 'yellow';
+        elseif ($cuadrosLlenos >= 1) $color = 'orange';
+    @endphp
+
+    <div class="tech-row mb-2">
+        <div class="d-flex align-items-center mb-1" style="
+    border-right-width: 10px;
+    width: 160px;
+">
+            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
+            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
+        </div>
+        <div class="tech-bar d-flex gap-1">
+            @for ($i = 0; $i < 10; $i++)
+                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}"></div>
+            @endfor
+        </div>
+    </div>
+@endforeach
+
+{{-- Tecnologías completas con ícono de check ✅ --}}
+@if (count($topCompletas) > 0)
+    <div class="mt-4">
+        <div class="d-flex flex-wrap gap-3">
+            @foreach ($topCompletas as $tec)
+                <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
+                    <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
+                    <i class="fas fa-check-circle text-white ms-1"></i>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
+
+
                 </div>
             </div>
         </div>
     </footer>
     <!-- Copyright Section-->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+        <div class="container"><small>Copyright &copy; 2021 DevPess. {{ __('messages.derechos') }}</small></div>
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

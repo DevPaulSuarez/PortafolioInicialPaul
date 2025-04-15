@@ -11679,6 +11679,37 @@ html {
 }
 
 
+/* Estilo para barra en el footer del idioma */
+.tech-bar {
+  display: flex;
+  gap: 3px;
+}
+
+.bar-segment {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.bar-filled.red { background-color: #dc3545; }        /* 0 usos */
+.bar-filled.orange { background-color: #fd7e14; }     /* 1-3 */
+.bar-filled.yellow { background-color: #ffc107; }     /* 4-6 */
+.bar-filled.green { background-color: #198754; }      /* 7-10 */
+
+.tech-name {
+  min-width: 90px;
+  font-weight: bold;
+}
+
+.tech-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+
 
 
 

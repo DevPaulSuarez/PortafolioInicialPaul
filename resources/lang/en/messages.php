@@ -32,16 +32,20 @@ return [
     'experiencia_laboral' => 'Work Experience',
     'click_year_for_info' => 'Click on a year to see more information.',
     /** seccion pie de pagina */
-    'ubicacion' => 'Location',
+    
     'mis_redes_sociales' => 'My Social Networks',
-    'proyectos_con_cms' => 'Projects with CMS',
-    'direccion' => 'AV. Siempre viva 245, Third floor',
-    'cms_description' => 'Raised Virtual Store Projects with <a href="https://pe.wordpress.org/" target="_blank">Wordpress</a> and Point of Sale Systems with <a href="https://www.odoo.com/es_ES" target="_blank">Oddo</a>.',
+    
+    'direccionTexto' => 'Available for freelance projects or collaborations.',
+    'direccionElectronica' => 'email',
+    'topTecnologias' => 'Top technologies',
+    
+
     'codigo' => 'Code',
     'ver_demo' => 'View Demo',
     'EMPRESA' => 'COMPANY',
     'CARGO' => 'POSITION',
     'DESCRIPCION' => 'DESCRIPTION',
+    'derechos' => 'All rights reserved'
 
     
 ];
