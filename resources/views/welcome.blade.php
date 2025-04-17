@@ -14,21 +14,21 @@
                     {{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}
                 </h5>
                 <ul class="list-unstyled">
-        @php
-            $tecnologias = $proyecto->experienciaLaboral->flatMap(function($exp) {
-                return $exp->tecnologias;
-            })->unique('id');
-        @endphp
+                    @php
+                    $tecnologias = $proyecto->experienciaLaboral->flatMap(function($exp) {
+                    return $exp->tecnologias;
+                    })->unique('id');
+                    @endphp
 
-        @forelse ($tecnologias as $tecnologia)
-            <img class="rounded mb-2"
-                src="{{ $tecnologia->icono }}"
-                alt="Ícono de {{ $tecnologia->nombre }}"
-                style="width: 50px; height: 50px; object-fit: contain;">
-        @empty
-            <li>No hay tecnologías asociadas</li>
-        @endforelse
-    </ul>
+                    @forelse ($tecnologias as $tecnologia)
+                    <img class="rounded mb-2"
+                        src="{{ $tecnologia->icono }}"
+                        alt="Ícono de {{ $tecnologia->nombre }}"
+                        style="width: 50px; height: 50px; object-fit: contain;">
+                    @empty
+                    <li>No hay tecnologías asociadas</li>
+                    @endforelse
+                </ul>
                 <a class="btn btn-primary mt-2" href="{{ $proyecto->url_live_demo }}" target="_blank">
                     {{ __('messages.ver_demo') }}
                 </a>
@@ -45,20 +45,20 @@
                 </div>
                 <div class="modal-body text-center pb-4">
                     <h2 class="text-secondary text-uppercase">{{ $proyecto->nombre }}</h2>
-                    <iframe
-                        class="img-fluid rounded mb-3 modal-img-fixed"
-                        width="560" 
-                        height="315" 
-                        src="{{ $proyecto->url_video_proyecto }}"
-                        title="{{ $proyecto->nombre }}"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                    <div class="mx-auto mb-3" style="width: 350px; height: 315px;">
+                        <video
+                            width="560"
+                            height="315"
+                            class="rounded shadow w-100 h-100"
+                            controls>
+                            <source src="{{ $proyecto->url_video_proyecto }}" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
                     <p>{{ $proyecto->descripcion }}</p>
                     <a class="btn btn-primary mt-2" href="{{ $proyecto->url_github }}" target="_blank">
-                    {{ __('messages.codigo') }}
-                </a>
+                        {{ __('messages.codigo') }}
+                    </a>
                     <button class="btn btn-primary mt-2" data-bs-dismiss="modal">
                         Atras
                     </button>
@@ -127,3 +127,4 @@
 
 
 @endsection
+
