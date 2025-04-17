@@ -56,7 +56,11 @@
             <div class="row align-items-center">
                 <!-- Columna de la imagen -->
                 <div class="col-md-6 text-center">
-                    <img class="masthead-avatar mb-5 img-fluid" src="assets/img/avataaars.svg" alt="Avatar" />
+                    <img
+                        src="https://res.cloudinary.com/dtscjqe7r/image/upload/v1744848031/pess/tdq58gurkjnaxrfr3rbn.jpg"
+                        alt="Avatar"
+                        class="img-fluid mb-4 rounded-circle shadow"
+                        style="max-width: 500px; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;" />
                 </div>
                 <!-- Columna del texto -->
                 <div class="col-md-6 text-md-start text-center">
@@ -168,7 +172,11 @@
                 </div>
                 <!-- Avatar Section -->
                 <div class="col-md-4 text-center">
-                    <img class="masthead-avatar mb-4 img-fluid rounded-circle" src="assets/img/avataaars.svg" alt="Avatar" />
+                    <img
+                        src="https://res.cloudinary.com/dtscjqe7r/image/upload/v1744848032/pess/ai9ajbsrqv9u3oncdg7o.jpg"
+                        alt="Avatar"
+                        class="img-fluid mb-4 rounded-circle shadow"
+                        style="max-width: 500px; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;" />
                 </div>
             </div>
         </div>
@@ -224,7 +232,7 @@
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">{{ __('form.success') }}</div>
                                 {{ __('form.activate_message') }}<br />
-                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                <a href="https://startbootstrap.com/solution/contact-forms"></a>
                             </div>
                         </div>
 
@@ -274,77 +282,75 @@
                 <!-- Redes Sociales -->
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">{{ __('messages.mis_redes_sociales') }}</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/tuusuario" target="_blank"><i class="fab fa-fw fa-github"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/@tuusuario" target="_blank"><i class="fab fa-fw fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/DevPaulSuarez" target="_blank"><i class="fab fa-fw fa-github"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.youtube.com/@DevPess2025" target="_blank"><i class="fab fa-fw fa-youtube"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/devpess" target="_blank"><i class="fab fa-fw fa-linkedin"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.figma.com/@tuusuario" target="_blank"><i class="fab fa-fw fa-figma"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://www.figma.com/@DevPess" target="_blank"><i class="fab fa-fw fa-figma"></i></a>
                 </div>
                 <!-- Footer About Text-->
-                                <!-- Tecnologías más usadas -->
+                <!-- Tecnologías más usadas -->
                 <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
-                @php
-    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
-    $topNormales = [];
-    $topCompletas = [];
-@endphp
+                    <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
+                    @php
+                    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
+                    $topNormales = [];
+                    $topCompletas = [];
+                    @endphp
 
-{{-- Clasificamos tecnologías: completas vs. incompletas --}}
-@foreach ($topTecnologias as $tec)
-    @php
-        $cuadrosLlenos = min(10, $tec['conteo']);
-        if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
-            $topCompletas[] = $tec;
-        } else {
-            $topNormales[] = $tec;
-        }
-    @endphp
-@endforeach
+                    {{-- Clasificamos tecnologías: completas vs. incompletas --}}
+                    @foreach ($topTecnologias as $tec)
+                    @php
+                    $cuadrosLlenos = min(10, $tec['conteo']);
+                    if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
+                    $topCompletas[] = $tec;
+                    } else {
+                    $topNormales[] = $tec;
+                    }
+                    @endphp
+                    @endforeach
 
-{{-- Barras de tecnologías incompletas --}}
-@foreach ($topNormales as $tec)
-    @php
-        $cuadrosLlenos = min(10, $tec['conteo']);
-        $color = 'red';
+                    {{-- Barras de tecnologías incompletas --}}
+                    @foreach ($topNormales as $tec)
+                    @php
+                    $cuadrosLlenos = min(10, $tec['conteo']);
+                    $color = 'red';
 
-        if ($cuadrosLlenos >= 7) $color = 'green';
-        elseif ($cuadrosLlenos >= 4) $color = 'yellow';
-        elseif ($cuadrosLlenos >= 1) $color = 'orange';
-    @endphp
+                    if ($cuadrosLlenos >= 7) $color = 'green';
+                    elseif ($cuadrosLlenos >= 4) $color = 'yellow';
+                    elseif ($cuadrosLlenos >= 1) $color = 'orange';
+                    @endphp
 
-    <div class="tech-row mb-2">
-        <div class="d-flex align-items-center mb-1" style="
-    border-right-width: 10px;
-    width: 160px;
-">
-            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
-            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
-        </div>
-        <div class="tech-bar d-flex gap-1">
-            @for ($i = 0; $i < 10; $i++)
-                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}"></div>
-            @endfor
-        </div>
-    </div>
-@endforeach
-
-{{-- Tecnologías completas con ícono de check ✅ --}}
-@if (count($topCompletas) > 0)
-    <div class="mt-4">
-        <div class="d-flex flex-wrap gap-3">
-            @foreach ($topCompletas as $tec)
-                <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
-                    <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
-                    <i class="fas fa-check-circle text-white ms-1"></i>
+                    <div class="tech-row mb-2">
+                        <div class="d-flex align-items-center mb-1" style="border-right-width: 10px; width: 160px;">
+                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
+                            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
+                        </div>
+                        <div class="tech-bar d-flex gap-1">
+                            @for ($i = 0; $i < 10; $i++)
+                                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}">
+                        </div>
+                        @endfor
+                    </div>
                 </div>
-            @endforeach
-        </div>
-    </div>
-@endif
+                @endforeach
 
-
+                {{-- Tecnologías completas con ícono de check ✅ --}}
+                @if (count($topCompletas) > 0)
+                <div class="mt-4">
+                    <div class="d-flex flex-wrap gap-3">
+                        @foreach ($topCompletas as $tec)
+                        <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
+                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
+                            <i class="fas fa-check-circle text-white ms-1"></i>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
+                @endif
+
+
             </div>
+        </div>
         </div>
     </footer>
     <!-- Copyright Section-->
