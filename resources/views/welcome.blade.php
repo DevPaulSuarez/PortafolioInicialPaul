@@ -45,7 +45,7 @@
                 </div>
                 <div class="modal-body text-center pb-4">
                     <h2 class="text-secondary text-uppercase">{{ $proyecto->nombre }}</h2>
-                    <div class="mx-auto mb-3" style="width: 350px; height: 315px;">
+                    <div class="mx-auto mb-3" style="width: 300px; height: 300px;">
                         <video
                             width="560"
                             height="315"
