@@ -327,69 +327,66 @@
                     <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/devpess" target="_blank"><i class="fab fa-fw fa-linkedin"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="https://www.figma.com/@DevPess" target="_blank"><i class="fab fa-fw fa-figma"></i></a>
                 </div>
-                <!-- Footer About Text-->
-                <!-- Tecnologías más usadas -->
-                <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
-                    @php
-                    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
-                    $topNormales = [];
-                    $topCompletas = [];
-                    @endphp
+                <div class="col-lg-4 mx-auto text-center">
+    <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
+    
+    @php
+    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
+    $topNormales = [];
+    $topCompletas = [];
+    @endphp
 
-                    {{-- Clasificamos tecnologías: completas vs. incompletas --}}
-                    @foreach ($topTecnologias as $tec)
-                    @php
-                    $cuadrosLlenos = min(10, $tec['conteo']);
-                    if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
-                    $topCompletas[] = $tec;
-                    } else {
-                    $topNormales[] = $tec;
-                    }
-                    @endphp
-                    @endforeach
+    {{-- Clasificamos tecnologías: completas vs. incompletas --}}
+    @foreach ($topTecnologias as $tec)
+    @php
+    $cuadrosLlenos = min(10, $tec['conteo']);
+    if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
+        $topCompletas[] = $tec;
+    } else {
+        $topNormales[] = $tec;
+    }
+    @endphp
+    @endforeach
 
-                    {{-- Barras de tecnologías incompletas --}}
-                    @foreach ($topNormales as $tec)
-                    @php
-                    $cuadrosLlenos = min(10, $tec['conteo']);
-                    $color = 'red';
+    {{-- Barras de tecnologías incompletas --}}
+    @foreach ($topNormales as $tec)
+    @php
+    $cuadrosLlenos = min(10, $tec['conteo']);
+    $color = 'red';
 
-                    if ($cuadrosLlenos >= 7) $color = 'green';
-                    elseif ($cuadrosLlenos >= 4) $color = 'yellow';
-                    elseif ($cuadrosLlenos >= 1) $color = 'orange';
-                    @endphp
+    if ($cuadrosLlenos >= 7) $color = 'green';
+    elseif ($cuadrosLlenos >= 4) $color = 'yellow';
+    elseif ($cuadrosLlenos >= 1) $color = 'orange';
+    @endphp
 
-                    <div class="tech-row mb-2">
-                        <div class="d-flex align-items-center mb-1" style="border-right-width: 10px; width: 160px;">
-                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
-                            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
-                        </div>
-                        <div class="tech-bar d-flex gap-1">
-                            @for ($i = 0; $i < 10; $i++)
-                                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}">
-                        </div>
-                        @endfor
-                    </div>
-                </div>
-                @endforeach
+    <div class="tech-row mb-2 d-flex justify-content-center">
+        <div class="d-flex align-items-center mb-1" style="border-right-width: 10px; width: 160px;">
+            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
+            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
+        </div>
+        <div class="tech-bar d-flex gap-1 justify-content-center">
+            @for ($i = 0; $i < 10; $i++)
+                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}"></div>
+            @endfor
+        </div>
+    </div>
+    @endforeach
 
-                {{-- Tecnologías completas con ícono de check ✅ --}}
-                @if (count($topCompletas) > 0)
-                <div class="mt-4">
-                    <div class="d-flex flex-wrap gap-3">
-                        @foreach ($topCompletas as $tec)
-                        <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
-                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
-                            <i class="fas fa-check-circle text-white ms-1"></i>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endif
-
-
+    {{-- Tecnologías completas con ícono de check ✅ --}}
+    @if (count($topCompletas) > 0)
+    <div class="mt-4">
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            @foreach ($topCompletas as $tec)
+            <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
+                <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
+                <i class="fas fa-check-circle text-white ms-1"></i>
             </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+</div>
+                
         </div>
         </div>
     </footer>
