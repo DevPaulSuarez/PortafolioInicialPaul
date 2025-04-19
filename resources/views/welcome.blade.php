@@ -55,7 +55,7 @@
                             Tu navegador no soporta la reproducción de video.
                         </video>
                     </div>
-                    <p>{{ $proyecto->descripcion }}</p>
+                    <p> {{ $idioma === 'en' ? $proyecto->descripcion_en : $proyecto->descripcion }}</p>
                     <a class="btn btn-primary mt-2" href="{{ $proyecto->url_github }}" target="_blank">
                         {{ __('messages.codigo') }}
                     </a>
