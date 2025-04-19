@@ -237,54 +237,55 @@
             <!-- Contact Section Form-->
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-xl-7">
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Name input-->
+                    <!-- Formulario de contacto -->
+                    <form action="{{ route('contact.send') }}" method="POST">
+                        @csrf <!-- Protección CSRF -->
+
+                        <!-- Nombre -->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="name" type="text" placeholder="{{ __('form.name_placeholder') }}" data-sb-validations="required" />
+                            <input class="form-control" id="name" type="text" placeholder="{{ __('form.name_placeholder') }}" name="name" required />
                             <label for="name">{{ __('form.name') }}</label>
                             <div class="invalid-feedback" data-sb-feedback="name:required">{{ __('form.name_required') }}</div>
                         </div>
 
-                        <!-- Email address input-->
+                        <!-- Correo electrónico -->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                            <input class="form-control" id="email" type="email" placeholder="name@example.com" name="email" required />
                             <label for="email">{{ __('form.email') }}</label>
                             <div class="invalid-feedback" data-sb-feedback="email:required">{{ __('form.email_required') }}</div>
                             <div class="invalid-feedback" data-sb-feedback="email:email">{{ __('form.email_invalid') }}</div>
                         </div>
 
-                        <!-- Phone number input-->
+                        <!-- Teléfono -->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="phone" type="number" placeholder="(123) 456-7890" data-sb-validations="required" />
+                            <input class="form-control" id="phone" type="number" placeholder="(123) 456-7890" name="phone" required />
                             <label for="phone">{{ __('form.phone') }}</label>
                             <div class="invalid-feedback" data-sb-feedback="phone:required">{{ __('form.phone_required') }}</div>
                         </div>
 
-                        <!-- Message input-->
+                        <!-- Mensaje -->
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="message" type="text" placeholder="{{ __('form.message_placeholder') }}" style="height: 10rem" data-sb-validations="required"></textarea>
+                            <textarea class="form-control" id="message" name="message" placeholder="{{ __('form.message_placeholder') }}" required style="height: 10rem"></textarea>
                             <label for="message">{{ __('form.message') }}</label>
                             <div class="invalid-feedback" data-sb-feedback="message:required">{{ __('form.message_required') }}</div>
                         </div>
 
-                        <!-- Success message-->
+                        <!-- Mensaje de éxito (opcional)-->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">{{ __('form.success') }}</div>
                                 {{ __('form.activate_message') }}<br />
-                                <a href="https://startbootstrap.com/solution/contact-forms"></a>
                             </div>
                         </div>
 
-                        <!-- Error message-->
+                        <!-- Mensaje de error (opcional)-->
                         <div class="d-none" id="submitErrorMessage">
                             <div class="text-center text-danger mb-3">{{ __('form.error') }}</div>
                         </div>
 
-                        <!-- Submit Button-->
+                        <!-- Botón de envío -->
                         <button class="btn btn-primary btn-xl" id="submitButton" type="submit">{{ __('form.send') }}</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -328,65 +329,66 @@
                     <a class="btn btn-outline-light btn-social mx-1" href="https://www.figma.com/@DevPess" target="_blank"><i class="fab fa-fw fa-figma"></i></a>
                 </div>
                 <div class="col-lg-4 mx-auto text-center">
-    <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
-    
-    @php
-    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
-    $topNormales = [];
-    $topCompletas = [];
-    @endphp
+                    <h4 class="text-uppercase mb-4">{{ __('messages.topTecnologias') }}</h4>
 
-    {{-- Clasificamos tecnologías: completas vs. incompletas --}}
-    @foreach ($topTecnologias as $tec)
-    @php
-    $cuadrosLlenos = min(10, $tec['conteo']);
-    if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
-        $topCompletas[] = $tec;
-    } else {
-        $topNormales[] = $tec;
-    }
-    @endphp
-    @endforeach
+                    @php
+                    $omitidas = ['HTML', 'CSS', 'JavaScript', 'TypeScript'];
+                    $topNormales = [];
+                    $topCompletas = [];
+                    @endphp
 
-    {{-- Barras de tecnologías incompletas --}}
-    @foreach ($topNormales as $tec)
-    @php
-    $cuadrosLlenos = min(10, $tec['conteo']);
-    $color = 'red';
+                    {{-- Clasificamos tecnologías: completas vs. incompletas --}}
+                    @foreach ($topTecnologias as $tec)
+                    @php
+                    $cuadrosLlenos = min(10, $tec['conteo']);
+                    if ($cuadrosLlenos >= 10 || in_array($tec['nombre'], $omitidas)) {
+                    $topCompletas[] = $tec;
+                    } else {
+                    $topNormales[] = $tec;
+                    }
+                    @endphp
+                    @endforeach
 
-    if ($cuadrosLlenos >= 7) $color = 'green';
-    elseif ($cuadrosLlenos >= 4) $color = 'yellow';
-    elseif ($cuadrosLlenos >= 1) $color = 'orange';
-    @endphp
+                    {{-- Barras de tecnologías incompletas --}}
+                    @foreach ($topNormales as $tec)
+                    @php
+                    $cuadrosLlenos = min(10, $tec['conteo']);
+                    $color = 'red';
 
-    <div class="tech-row mb-2 d-flex justify-content-center">
-        <div class="d-flex align-items-center mb-1" style="border-right-width: 10px; width: 160px;">
-            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
-            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
-        </div>
-        <div class="tech-bar d-flex gap-1 justify-content-center">
-            @for ($i = 0; $i < 10; $i++)
-                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}"></div>
-            @endfor
-        </div>
-    </div>
-    @endforeach
+                    if ($cuadrosLlenos >= 7) $color = 'green';
+                    elseif ($cuadrosLlenos >= 4) $color = 'yellow';
+                    elseif ($cuadrosLlenos >= 1) $color = 'orange';
+                    @endphp
 
-    {{-- Tecnologías completas con ícono de check ✅ --}}
-    @if (count($topCompletas) > 0)
-    <div class="mt-4">
-        <div class="d-flex flex-wrap gap-3 justify-content-center">
-            @foreach ($topCompletas as $tec)
-            <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
-                <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
-                <i class="fas fa-check-circle text-white ms-1"></i>
+                    <div class="tech-row mb-2 d-flex justify-content-center">
+                        <div class="d-flex align-items-center mb-1" style="border-right-width: 10px; width: 160px;">
+                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px; margin-right: 8px;">
+                            <div class="tech-name text-white">{{ $tec['nombre'] }}</div>
+                        </div>
+                        <div class="tech-bar d-flex gap-1 justify-content-center">
+                            @for ($i = 0; $i < 10; $i++)
+                                <div class="bar-segment {{ $i < $cuadrosLlenos ? 'bar-filled ' . $color : '' }}">
+                        </div>
+                        @endfor
+                    </div>
+                </div>
+                @endforeach
+
+                {{-- Tecnologías completas con ícono de check ✅ --}}
+                @if (count($topCompletas) > 0)
+                <div class="mt-4">
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        @foreach ($topCompletas as $tec)
+                        <div class="d-flex align-items-center bg-success px-3 py-2 rounded" style="gap: 8px;">
+                            <img src="{{ $tec['icono'] }}" alt="{{ $tec['nombre'] }}" style="width: 24px;">
+                            <i class="fas fa-check-circle text-white ms-1"></i>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
             </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-</div>
-                
+
         </div>
         </div>
     </footer>

@@ -10,6 +10,7 @@ use App\Http\Controllers\PortafolioController;
 use App\Http\Controllers\HomeController;
 use App\Models\Proyecto;
 use App\Models\Tecnologia;
+use App\Http\Controllers\ContactController;
 
 /*
 |---------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::get('lang/{locale}', function ($locale) {
 
 // Ruta principal utilizando PortafolioController
 Route::get('/', [PortafolioController::class, 'index']);
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
+
