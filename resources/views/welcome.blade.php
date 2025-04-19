@@ -44,7 +44,7 @@
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center pb-4">
-                    <h2 class="text-secondary text-uppercase">{{ $proyecto->nombre }}</h2>
+                    <h2 class="text-secondary text-uppercase">{{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}</h2>
                     <div class="mx-auto mb-3" style="width: 300px; height: 300px;">
                         <video
                             width="560"
