@@ -44,32 +44,32 @@
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center pb-4">
-    <h2 class="text-secondary text-uppercase mb-4">
-        {{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}
-    </h2>
+                    <h2 class="text-secondary text-uppercase mb-4">
+                        {{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}
+                    </h2>
 
-    <div class="mx-auto mb-4" style="width: 300px; height: 300px;">
-        <video
-            class="rounded shadow w-100 h-100"
-            controls>
-            <source src="{{ $proyecto->url_video_proyecto }}" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-        </video>
-    </div>
+                    <div class="mx-auto mb-4" style="width: 300px; height: 300px;">
+                        <video
+                            class="rounded shadow w-100 h-100"
+                            controls>
+                            <source src="{{ $proyecto->url_video_proyecto }}" type="video/mp4">
+                            Tu navegador no soporta la reproducción de video.
+                        </video>
+                    </div>
 
-    <p class="mx-auto px-3" style="text-align: justify; max-width: 400px; hyphens: auto; line-height: 1.2;">
-        {{ $idioma === 'en' ? $proyecto->descripcion_en : $proyecto->descripcion }}
-    </p>
+                    <p class="mx-auto px-3" style="text-align: justify; max-width: 400px; hyphens: auto; line-height: 1.2;">
+                        {{ $idioma === 'en' ? $proyecto->descripcion_en : $proyecto->descripcion }}
+                    </p>
 
-    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-        <a class="btn btn-primary" href="{{ $proyecto->url_github }}" target="_blank">
-            {{ __('messages.codigo') }}
-        </a>
-        <button class="btn btn-primary" data-bs-dismiss="modal">
-            Atrás
-        </button>
-    </div>
-</div>
+                    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                        <a class="btn btn-primary" href="{{ $proyecto->url_github }}" target="_blank">
+                            {{ __('messages.codigo') }}
+                        </a>
+                        <button class="btn btn-primary" data-bs-dismiss="modal">
+                            Atrás
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
