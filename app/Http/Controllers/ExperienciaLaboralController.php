@@ -52,9 +52,6 @@ class ExperienciaLaboralController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(ExperienciaLaboral::$rules);
-
-        dd($validatedData); // DEBUG
-
         $experiencia = ExperienciaLaboral::create(array_merge($validatedData, [
             'user_id' => auth()->id(), // Asegura que la experiencia esté vinculada al usuario autenticado
         ]));
