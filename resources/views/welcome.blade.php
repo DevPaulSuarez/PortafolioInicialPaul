@@ -6,14 +6,24 @@
     @foreach ($proyectos as $proyecto)
     <!-- Card de Proyecto -->
     <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card h-100 shadow">
+        <div class="card h-100 shadow d-flex flex-column">
+            <!-- Imagen principal del proyecto -->
             <img src="{{ $proyecto->imagen }}" class="card-img-top img-fixed" alt="{{ $proyecto->nombre }}">
-            <div class="img2"><img src="{{ $proyecto->imagen }}" alt="" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $proyecto->id }}"></div>
-            <div class="card-body text-center">
-                <h5 class="card-title">
+
+            <!-- Imagen clickeable para abrir el modal -->
+            <div class="img2">
+                <img src="{{ $proyecto->imagen }}" alt="" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $proyecto->id }}">
+            </div>
+
+            <!-- Cuerpo de la tarjeta -->
+            <div class="card-body d-flex flex-column">
+                <!-- Título del proyecto -->
+                <h5 class="card-title text-secondary fw-semibold fs-6 mb-3 px-2" style="text-align: center;">
                     {{ $idioma === 'en' ? $proyecto->nombre_en : $proyecto->nombre }}
                 </h5>
-                <ul class="list-unstyled">
+
+                <!-- Tecnologías utilizadas -->
+                <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
                     @php
                     $tecnologias = $proyecto->experienciaLaboral->flatMap(function($exp) {
                     return $exp->tecnologias;
@@ -21,20 +31,25 @@
                     @endphp
 
                     @forelse ($tecnologias as $tecnologia)
-                    <img class="rounded mb-2"
+                    <img class="rounded"
                         src="{{ $tecnologia->icono }}"
                         alt="Ícono de {{ $tecnologia->nombre }}"
-                        style="width: 50px; height: 50px; object-fit: contain;">
+                        style="width: 38px; height: 38px; object-fit: contain;">
                     @empty
-                    <li>No hay tecnologías asociadas</li>
+                    <p class="text-muted small">No hay tecnologías asociadas</p>
                     @endforelse
-                </ul>
-                <a class="btn btn-primary mt-2" href="{{ $proyecto->url_live_demo }}" target="_blank">
-                    {{ __('messages.ver_demo') }}
-                </a>
+                </div>
+
+                <!-- Botón al pie -->
+                <div class="mt-auto">
+                    <a class="btn btn-primary w-100" href="{{ $proyecto->url_live_demo }}" target="_blank">
+                        {{ __('messages.ver_demo') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+
 
     <!-- Modal del Proyecto -->
     <div class="portfolio-modal modal fade" id="portfolioModal{{ $proyecto->id }}" tabindex="-1" aria-labelledby="portfolioModal{{ $proyecto->id }}" aria-hidden="true">
