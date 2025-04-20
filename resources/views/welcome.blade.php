@@ -50,7 +50,6 @@
         </div>
     </div>
 
-
     <!-- Modal del Proyecto -->
     <div class="portfolio-modal modal fade" id="portfolioModal{{ $proyecto->id }}" tabindex="-1" aria-labelledby="portfolioModal{{ $proyecto->id }}" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -65,6 +64,7 @@
 
                     <div class="mx-auto mb-4" style="width: 300px; height: 300px;">
                         <video
+                            id="videoPlayer{{ $proyecto->id }}"
                             class="rounded shadow w-100 h-100"
                             controls>
                             <source src="{{ $proyecto->url_video_proyecto }}" type="video/mp4">
@@ -85,12 +85,27 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     @endforeach
 </div>
+
+<!-- JavaScript para detener el video al cerrar el modal -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.portfolio-modal').forEach(function(modal) {
+            modal.addEventListener('hidden.bs.modal', function(event) {
+                var videoId = 'videoPlayer' + event.target.id.replace('portfolioModal', '');
+                var videoPlayer = document.getElementById(videoId);
+                if (videoPlayer) {
+                    videoPlayer.pause();
+                    videoPlayer.currentTime = 0;
+                }
+            });
+        });
+    });
+</script>
 
 @endsection
 
