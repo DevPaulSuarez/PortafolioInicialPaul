@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', event => {
             // Obtener y mostrar la descripción si existe
             const description = item.getAttribute('data-description');
             if (description) {
-                const formattedDescription = description.replace(/\n/g, '<br>');
+                const formattedDescription = description ? description.replace(/\n/g, '<br>') : '';
                 descriptionText.innerHTML = formattedDescription;
             } else {
                 descriptionText.innerHTML = ''; // Limpiar si no hay descripción
