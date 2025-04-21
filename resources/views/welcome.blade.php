@@ -180,7 +180,7 @@ return \Carbon\Carbon::parse($item->fecha_inicio)->format('Y');
                 <p class="text-muted mb-0"><b><u>{{ $fechaInicio }} - {{ $fechaFin }}</u></b></p>
                 <p class="mb-1"><strong>{{ __('messages.EMPRESA') }}:</strong> {{ $empresa }}</p>
                 <p class="mb-1"><strong>{{ __('messages.CARGO') }}:</strong> {{ $cargo }}</p>
-                <p class="mb-1"><strong>{{ __('messages.DESCRIPCION') }}:</strong> {!! $descripcion !!}</p>
+                <p class="mb-1 text-justify"><strong>{{ __('messages.DESCRIPCION') }}:</strong> {!! $descripcion !!}</p>
             </li>
             @endforeach
         </ul>
