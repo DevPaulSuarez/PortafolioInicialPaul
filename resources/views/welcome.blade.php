@@ -141,7 +141,7 @@
 @php
 // Agrupar las experiencias por año
 $experienciasPorAno = $experiencias->groupBy(function($item) {
-return \Carbon\Carbon::parse($item->fecha_inicio)->format('Y');
+return \Carbon\Carbon::parse($item->fecha_fin)->format('Y');
 });
 @endphp
 
