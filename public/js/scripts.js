@@ -51,30 +51,50 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
     
-    // JavaScript para interactividad
+    // Interacción con los íconos de la línea de tiempo
     const timelineItems = document.querySelectorAll('.timeline-item');
     const descriptionText = document.getElementById('description-text');
 
     timelineItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             // Restablecer el estilo de todos los iconos
             timelineItems.forEach(i => {
-                i.querySelector('.timeline-icon').classList.remove('selected');
+                const icon = i.querySelector('.timeline-icon');
+                if (icon) icon.classList.remove('selected');
             });
-            // Marcar el icono seleccionado
-            this.querySelector('.timeline-icon').classList.add('selected');
-            // Actualizar el texto de descripción
-            descriptionText.textContent = this.getAttribute('data-description');
+
+            const icon = this.querySelector('.timeline-icon');
+            if (icon) icon.classList.add('selected');
+
+            // Obtener y mostrar la descripción si existe
+            const description = item.getAttribute('data-description');
+            if (description) {
+                const formattedDescription = description.replace(/\n/g, '<br>');
+                descriptionText.innerHTML = formattedDescription;
+            } else {
+                descriptionText.innerHTML = ''; // Limpiar si no hay descripción
+            }
         });
     });
 
-    document.querySelectorAll('.timeline-item').forEach(item => {
-        item.addEventListener('click', function () {
-            const description = item.getAttribute('data-description');
-            // Reemplazar saltos de línea (\n) por <br>
-            const formattedDescription = description.replace(/\n/g, '<br>');
-            // Mostrar la descripción con saltos de línea
-            document.getElementById('description-text').innerHTML = formattedDescription;
+    // Interacción con los toggles de años
+    const yearToggles = document.querySelectorAll('.year-toggle');
+
+    yearToggles.forEach(toggle => {
+        toggle.addEventListener('click', function () {
+            const year = this.dataset.year;
+            const container = document.getElementById('experiencias-' + year);
+
+            if (container) {
+                container.classList.toggle('d-none');
+
+                // Ocultar experiencias de otros años
+                document.querySelectorAll('.year-experiences').forEach(other => {
+                    if (other !== container) {
+                        other.classList.add('d-none');
+                    }
+                });
+            }
         });
     });
 });

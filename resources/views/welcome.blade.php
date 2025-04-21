@@ -138,30 +138,46 @@
 @section('experiencias')
 <h2 class="text-center mb-4">{{ __('messages.experiencia_laboral') }}</h2>
 
-<div class="timeline">
-    @foreach ($experiencias as $experiencia)
-    @php
-    $empresa = $idioma === 'en' ? $experiencia->empresa_en : $experiencia->empresa;
-    $cargo = $idioma === 'en' ? $experiencia->cargo_en : $experiencia->cargo;
-    $descripcion = $idioma === 'en' ? $experiencia->descripcion_en : $experiencia->descripcion;
-    @endphp
+@php
+    $experienciasPorAno = $experiencias->groupBy(function($item) {
+        return \Carbon\Carbon::parse($item->fecha_inicio)->format('Y');
+    });
+@endphp
 
-    <div class="timeline-item"
-        data-description="{!! 
-                '<strong>' . __('messages.EMPRESA') . ':</strong> ' . $empresa . '<br>' .
-                '<strong>' . __('messages.CARGO') . ':</strong> ' . $cargo . '<br>' .
-                '<strong>' . __('messages.DESCRIPCION') . ':</strong> ' . $descripcion . '<br>' .
-                '(' . $experiencia->fecha_inicio . ' - ' . $experiencia->fecha_fin . ')' 
-            !!}">
-        <div class="timeline-icon">
-            {{ \Carbon\Carbon::parse($experiencia->fecha_inicio)->format('Y-m') }}
+{{-- Línea de tiempo con solo los años --}}
+<div class="timeline">
+    @foreach ($experienciasPorAno as $ano => $items)
+        <div class="timeline-item year-toggle" data-year="{{ $ano }}">
+            <div class="timeline-icon">{{ $ano }}</div>
         </div>
-    </div>
     @endforeach
 </div>
+
 <div class="text-center mt-3">
     <p id="description-text" class="timeline-description">{{ __('messages.click_year_for_info') }}</p>
 </div>
 
-
+{{-- Contenedor de experiencias por año, fuera de la línea --}}
+<div class="experiencias-por-ano mt-4">
+    @foreach ($experienciasPorAno as $ano => $items)
+        <div class="year-experiences d-none" id="experiencias-{{ $ano }}">
+            <h4 class="text-secundary text-center mb-3">{{ $ano }}</h4>
+            <ul class="list-group mb-4">
+                @foreach ($items as $experiencia)
+                    @php
+                        $empresa = $idioma === 'en' ? $experiencia->empresa_en : $experiencia->empresa;
+                        $cargo = $idioma === 'en' ? $experiencia->cargo_en : $experiencia->cargo;
+                        $descripcion = $idioma === 'en' ? $experiencia->descripcion_en : $experiencia->descripcion;
+                    @endphp
+                    <li class="list-group-item">
+                        <p class="mb-1"><strong>{{ __('messages.EMPRESA') }}:</strong> {{ $empresa }}</p>
+                        <p class="mb-1"><strong>{{ __('messages.CARGO') }}:</strong> {{ $cargo }}</p>
+                        <p class="mb-1"><strong>{{ __('messages.DESCRIPCION') }}:</strong> {!! $descripcion !!}</p>
+                        <p class="text-muted mb-0"><small>({{ $experiencia->fecha_inicio }} - {{ $experiencia->fecha_fin }})</small></p>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endforeach
+</div>
 @endsection
