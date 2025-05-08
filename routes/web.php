@@ -11,6 +11,8 @@ use App\Http\Controllers\HomeController;
 use App\Models\Proyecto;
 use App\Models\Tecnologia;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\JuegoDeLaVidaController;
+
 
 /*
 |---------------------------------------------------------------------------
@@ -47,4 +49,8 @@ Route::get('/', [PortafolioController::class, 'index']);
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
+
+Route::get('/juego-de-la-vida', [JuegoDeLaVidaController::class, 'index'])->name('juego.vida');
+
+
 
