@@ -117,7 +117,7 @@
         const continueBtn = document.getElementById("continueBtn");
         const addRandomBtn = document.getElementById("addRandomBtn");
 
-        const cellSize = 2;
+        const cellSize = 3;
         const cols = Math.floor(canvas.width / cellSize);
         const rows = Math.floor(canvas.height / cellSize);
 
