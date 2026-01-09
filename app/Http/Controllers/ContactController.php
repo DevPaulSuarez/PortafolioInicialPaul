@@ -12,11 +12,20 @@ class ContactController extends Controller
     {
         return view('contact');
     }
-
     // Enviar el correo con los datos del formulario
     public function sendEmail(Request $request)
     {
-        // Validación del formulario
+        // 1️⃣ Honeypot: bloquea bots que rellenan campos ocultos
+        if ($request->filled('company')) {
+            abort(400); // bloqueo silencioso
+        }
+
+        // 2️⃣ Bloquear mensajes con links sospechosos
+        if (preg_match('/(http|https|www\.|\.gy|\.ru|\.xyz)/i', $request->message)) {
+            abort(400);
+        }
+
+        // 3️⃣ Validación del formulario
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -24,7 +33,7 @@ class ContactController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        // Enviar correo
+        // 4️⃣ Enviar correo
         try {
             Mail::to('paulSuarez018@gmail.com')->send(new ContactFormMail($validated));
             return back()->with('success', 'Tu mensaje ha sido enviado exitosamente');
@@ -32,6 +41,7 @@ class ContactController extends Controller
             return back()->with('error', 'Hubo un error al enviar tu mensaje. Inténtalo nuevamente.');
         }
     }
+
 }
 
 

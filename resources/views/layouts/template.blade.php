@@ -241,6 +241,8 @@
                     <form action="{{ route('contact.send') }}" method="POST">
                         @csrf <!-- Protección CSRF -->
 
+                         <!-- Honeypot anti-bots -->
+                        <input type="text" name="company" style="display:none">
                         <!-- Nombre -->
                         <div class="form-floating mb-3">
                             <input class="form-control" id="name" type="text" placeholder="{{ __('form.name_placeholder') }}" name="name" required />
