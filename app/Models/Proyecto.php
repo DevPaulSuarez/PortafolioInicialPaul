@@ -18,6 +18,20 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
+
+
+/**
+ * @OA\Schema(
+ *     schema="Proyecto",
+ *     type="object",
+ *     title="Proyecto",
+ *     @OA\Property(property="id", type="integer"),
+ *     @OA\Property(property="nombre", type="string"),
+ *     @OA\Property(property="imagen", type="string"),
+ *     @OA\Property(property="descripcion", type="string"),
+ *     @OA\Property(property="url", type="string")
+ * )
+ */
 class Proyecto extends Model
 {
     
