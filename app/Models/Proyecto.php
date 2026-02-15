@@ -51,7 +51,11 @@ class Proyecto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url','nombre_en','descripcion_en','url_live_demo','url_github', 'url_video_proyecto'];
+    protected $fillable = ['nombre', 'imagen', 'descripcion', 'url', 'user_id', 'demo_url','nombre_en','descripcion_en','url_live_demo','url_github', 'url_video_proyecto','publicar_externo','tipo_proyecto'];
+
+    protected $casts = [
+    'publicar_externo' => 'boolean',
+];
 
     public function user()
     {
@@ -69,6 +73,18 @@ class Proyecto extends Model
     {
         return $this->hasMany(ExperienciaLaboral::class);
     }
+
+    public function getProjectTypeLabelAttribute()
+{
+    return [
+        'small_business' => 'Small Business',
+        'non_profit' => 'Non-Profit Organization',
+        'corporate_website' => 'Corporate Website',
+        'ecommerce' => 'E-Commerce',
+        'landing_page' => 'Landing Page',
+        'full_system' => 'Full System',
+    ][$this->project_type] ?? 'Undefined';
+}
 
 
 
