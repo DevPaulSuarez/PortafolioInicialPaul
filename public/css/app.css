@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8";
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -371,9 +371,7 @@ select:disabled {
 button,
 [type=button],
 [type=reset],
-[type=submit] {
-  -webkit-appearance: button;
-}
+
 button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
@@ -430,7 +428,6 @@ legend + * {
 
 [type=search] {
   outline-offset: -2px;
-  -webkit-appearance: textfield;
 }
 
 /* rtl:raw:
@@ -2434,8 +2431,6 @@ textarea.form-control-lg {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  -webkit-print-color-adjust: exact;
-          color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
@@ -11171,3 +11166,75 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* Card principal */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Header de la card */
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Form group dentro de show view */
+.card-body .form-group {
+    margin-bottom: 1rem;
+}
+
+/* Labels fuertes */
+.card-body .form-group strong {
+    color: #495057;
+    width: 150px;
+    display: inline-block;
+}
+
+/* Imágenes miniatura */
+.project-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.project-thumbnails img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.project-thumbnails img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Badges de tipo y visibilidad */
+.badge-project-type {
+    font-size: 0.85rem;
+    padding: 0.4em 0.7em;
+}
+
+.badge-visible {
+    font-size: 0.85rem;
+    padding: 0.4em 0.7em;
+}
+
+/* Lista de características */
+.project-features {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.project-features li {
+    margin-bottom: 0.5rem;
+}
+

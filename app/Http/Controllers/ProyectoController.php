@@ -52,20 +52,35 @@ class ProyectoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // Validar los datos
+public function store(Request $request)
+{
+    // Validar campos incluyendo los nuevos
     $validatedData = $request->validate(Proyecto::$rules);
 
-    // Crear el proyecto asegurando que esté vinculado al usuario autenticado
+    // Manejo de imágenes
+    $imagenesNombres = [];
+    if ($request->hasFile('imagenes')) {
+                // Tomamos solo las 3 primeras imágenes
+        $files = array_slice($request->file('imagenes'), 0, 3);
+
+        foreach ($files as $file) {
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/proyectosImg', $filename);
+            $imagenesNombres[] = $filename;
+        }
+    }
+
+    // Crear el proyecto
     Proyecto::create(array_merge($validatedData, [
-        'user_id' => auth()->id(), // Asigna el usuario autenticado
+        'user_id' => auth()->id(),
+        'imagenes' => json_encode($imagenesNombres),
+        'caracteristicas' => $request->caracteristicas ? json_encode(explode("\n", $request->caracteristicas)) : null
     ]));
 
-    // Redirigir con mensaje de éxito
     return redirect()->route('proyectos.index')
-        ->with('success', 'Proyecto creado con éxito.'); 
-    }
+                     ->with('success', 'Proyecto creado con éxito.');
+}
+
 
     /**
      * Display the specified resource.
@@ -100,16 +115,31 @@ class ProyectoController extends Controller
      * @param  Proyecto $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proyecto $proyecto)
-    {
-        request()->validate(Proyecto::$rules);
+public function update(Request $request, Proyecto $proyecto)
+{
+    $validatedData = $request->validate(Proyecto::$rules);
 
-        
-        $proyecto->update($request->all());
-
-        return redirect()->route('proyectos.index')
-            ->with('success', 'Proyecto updated successfully');
+    // Manejo de nuevas imágenes (opcional)
+    $imagenesNombres = json_decode($proyecto->imagenes) ?? [];
+    if ($request->hasFile('imagenes')) {
+$files = array_slice($request->file('imagenes'), 0, 3);
+        $imagenesNombres  = []; // eliminamos las anteriores para reemplazarlas
+        foreach ($files as $file) {
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/proyectosImg', $filename);
+            $imagenesNombres[] = $filename;
+        }
     }
+
+    $proyecto->update(array_merge($validatedData, [
+        'imagenes' => json_encode($imagenesNombres),
+        'caracteristicas' => $request->caracteristicas ? json_encode(explode("\n", $request->caracteristicas)) : null
+    ]));
+
+    return redirect()->route('proyectos.index')
+                     ->with('success', 'Proyecto actualizado con éxito.');
+}
+
 
     /**
      * @param int $id

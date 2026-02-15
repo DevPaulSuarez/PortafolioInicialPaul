@@ -21,6 +21,23 @@
     ], $proyecto->tipo_proyecto ?? '', ['class' => 'form-control']) }}
             {!! $errors->first('tipo_proyecto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
+
+<div class="form-group">
+    {{ Form::label('imagenes', 'Imágenes del Proyecto (máx 3)') }}
+    {{ Form::file('imagenes[]', ['multiple' => true, 'accept' => 'image/*', 'class' => 'form-control']) }}
+    <small>Selecciona hasta 3 imágenes.</small>
+    {!! $errors->first('imagenes', '<div class="invalid-feedback">:message</div>') !!}
+</div>
+
+
+        <!-- Características del proyecto -->
+<div class="form-group">
+    {{ Form::label('caracteristicas', 'Características del Proyecto') }}
+    {{ Form::textarea('caracteristicas', isset($proyecto->caracteristicas) ? implode("\n", json_decode($proyecto->caracteristicas)) : '', ['class' => 'form-control', 'rows' => 5, 'placeholder' => "Cada característica en una línea"]) }}
+    {!! $errors->first('caracteristicas', '<div class="invalid-feedback">:message</div>') !!}
+</div>
+
         <div class="form-group">
             {{ Form::label('nombre') }}
             {{ Form::text('nombre', $proyecto->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
