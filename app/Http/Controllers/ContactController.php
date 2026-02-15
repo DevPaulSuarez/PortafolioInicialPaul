@@ -20,7 +20,7 @@ class ContactController extends Controller
             abort(400); // bloqueo silencioso
         }
 
-        // 2️⃣ Bloquear mensajes con links sospechosos
+        // 2️⃣ Bloquear mensajes con links sospechosos de robots
         if (preg_match('/(http|https|www\.|\.gy|\.ru|\.xyz)/i', $request->message)) {
             abort(400);
         }
