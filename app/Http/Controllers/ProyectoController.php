@@ -54,13 +54,14 @@ class ProyectoController extends Controller
      */
 public function store(Request $request)
 {
-    // Validar campos incluyendo los nuevos
     $validatedData = $request->validate(Proyecto::$rules);
 
-    // Manejo de imágenes
+    // Forzar booleano del checkbox
+    $validatedData['publicar_externo'] = $request->has('publicar_externo');
+
     $imagenesNombres = [];
+
     if ($request->hasFile('imagenes')) {
-                // Tomamos solo las 3 primeras imágenes
         $files = array_slice($request->file('imagenes'), 0, 3);
 
         foreach ($files as $file) {
@@ -70,16 +71,18 @@ public function store(Request $request)
         }
     }
 
-    // Crear el proyecto
     Proyecto::create(array_merge($validatedData, [
         'user_id' => auth()->id(),
         'imagenes' => json_encode($imagenesNombres),
-        'caracteristicas' => $request->caracteristicas ? json_encode(explode("\n", $request->caracteristicas)) : null
+        'caracteristicas' => $request->caracteristicas 
+            ? json_encode(explode("\n", $request->caracteristicas)) 
+            : null
     ]));
 
     return redirect()->route('proyectos.index')
                      ->with('success', 'Proyecto creado con éxito.');
 }
+
 
 
     /**
@@ -119,11 +122,15 @@ public function update(Request $request, Proyecto $proyecto)
 {
     $validatedData = $request->validate(Proyecto::$rules);
 
-    // Manejo de nuevas imágenes (opcional)
+    // 🔥 FORZAR booleano siempre
+    $validatedData['publicar_externo'] = $request->has('publicar_externo');
+
     $imagenesNombres = json_decode($proyecto->imagenes) ?? [];
+
     if ($request->hasFile('imagenes')) {
-$files = array_slice($request->file('imagenes'), 0, 3);
-        $imagenesNombres  = []; // eliminamos las anteriores para reemplazarlas
+        $files = array_slice($request->file('imagenes'), 0, 3);
+        $imagenesNombres = [];
+
         foreach ($files as $file) {
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('public/proyectosImg', $filename);
@@ -133,12 +140,15 @@ $files = array_slice($request->file('imagenes'), 0, 3);
 
     $proyecto->update(array_merge($validatedData, [
         'imagenes' => json_encode($imagenesNombres),
-        'caracteristicas' => $request->caracteristicas ? json_encode(explode("\n", $request->caracteristicas)) : null
+        'caracteristicas' => $request->caracteristicas 
+            ? json_encode(explode("\n", $request->caracteristicas)) 
+            : null
     ]));
 
     return redirect()->route('proyectos.index')
                      ->with('success', 'Proyecto actualizado con éxito.');
 }
+
 
 
     /**
